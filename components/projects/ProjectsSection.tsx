@@ -43,9 +43,9 @@ export default function ProjectsSection() {
                             <a href="https://github.com/Deep-Parekh/diet_agent" className={styles.linkBtn} target="_blank" rel="noopener noreferrer">
                                 <Github size={18} /> View Code
                             </a>
-                            {/* <a href="#" className={styles.linkBtn}>
-                                <ExternalLink size={18} /> Case Study
-                            </a> */}
+                            <a href="https://huggingface.co/spaces/DeepParekh/diet_app" className={styles.linkBtn} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink size={18} /> Try it Yourself
+                            </a>
                         </div>
                     </div>
                 </motion.div>
