@@ -8,17 +8,17 @@ const skillCategories = [
     {
         title: 'Languages',
         icon: <Code2 size={20} className="text-blue-500" />,
-        skills: ['JavaScript (React)', 'Python', 'HTML/CSS/SCSS', 'SQL', 'C#', '.NET Framework']
+        skills: ['JavaScript', 'Python', 'HTML/CSS/SCSS', 'SQL', 'C#', '.NET Framework']
     },
     {
         title: 'AI & Machine Learning',
         icon: <Database size={20} className="text-yellow-500" />,
-        skills: ['TensorFlow', 'PyTorch', 'Keras', 'Ollama', 'RAG', 'NLP', 'Computer Vision']
+        skills: ['TensorFlow', 'PyTorch', 'Ollama', 'RAG', 'NLP', 'Computer Vision']
     },
     {
         title: 'Frameworks & Libraries',
         icon: <Layout size={20} className="text-purple-500" />,
-        skills: ['React', 'Next.js', 'PyTorch', 'Requests', 'BeautifulSoup']
+        skills: ['React', 'Next.js', 'PyTorch', 'Langchain', 'BeautifulSoup']
     },
     {
         title: 'Data & Tools',

@@ -79,7 +79,7 @@ export default function ProjectsSection() {
                 </motion.div>
 
                 {/* Project 3: Sorting Visualizer */}
-                <motion.div
+                {/* <motion.div
                     className={styles.projectCard}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -103,15 +103,9 @@ export default function ProjectsSection() {
                             The interactive demo allows users to generate random datasets and watch the sorting process step-by-step.
                         </p>
                         <div className={styles.links}>
-                            {/* <a href="#" className={styles.linkBtn}>
-                                <Github size={18} /> View Code
-                            </a>
-                            <a href="#" className={styles.linkBtn}>
-                                <ExternalLink size={18} /> Live Demo
-                            </a> */}
                         </div>
                     </div>
-                </motion.div>
+                </motion.div> */}
 
             </div>
         </section>
