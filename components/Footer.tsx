@@ -50,7 +50,7 @@ export default function Footer() {
 
                 <div className={styles.baseline}>
                     <span className={`${styles.mono} dark-only`}>{'// © 2026 Deep Parekh — built with Next.js'}</span>
-                    <span className="light-only">© 2026 Deep Parekh — built with Next.js</span>
+                    <span className="light-only">© 2026 Deep Parekh</span>
                 </div>
             </div>
         </footer>
