@@ -1,6 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import SectionEyebrow from '@/components/SectionEyebrow';
+import { OffsideFlagIcon } from '@/components/SoccerIcons';
 import styles from './Experience.module.css';
 
 const experiences = [
@@ -28,6 +30,7 @@ export default function Experience() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
+                    <SectionEyebrow dark="experience.md" light="Match Report" icon={<OffsideFlagIcon />} />
                     Professional <span className="gradient-text">Journey</span>
                 </motion.h2>
 

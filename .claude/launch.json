@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "artifact-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8742",
+        "--directory",
+        "/private/tmp/claude-501/-Users-deep-pers-port/6c982be4-ba96-48a9-acfd-83912b78dd96/scratchpad"
+      ],
+      "port": 8742
+    }
+  ]
+}

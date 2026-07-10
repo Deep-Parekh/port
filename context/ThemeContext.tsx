@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -11,23 +11,21 @@ type ThemeContextType = {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-    const [theme, setTheme] = useState<Theme>('dark'); // Default to dark
+// The data-theme attribute is set before paint by the inline script in
+// app/layout.tsx, so on the client we can read it synchronously here.
+function getDomTheme(): Theme {
+    if (typeof document !== 'undefined') {
+        return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    }
+    return 'dark';
+}
 
-    useEffect(() => {
-        // Check local storage or system preference on mount
-        const savedTheme = localStorage.getItem('theme') as Theme;
-        if (savedTheme) {
-            setTheme(savedTheme);
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        } else {
-            // Default is dark via CSS :root, but let's be explicit
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
-    }, []);
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+    const [theme, setTheme] = useState<Theme>(getDomTheme);
 
     const toggleTheme = () => {
-        const newTheme = theme === 'dark' ? 'light' : 'dark';
+        // Read from the DOM rather than state so back-to-back toggles never go stale
+        const newTheme = getDomTheme() === 'dark' ? 'light' : 'dark';
         setTheme(newTheme);
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);

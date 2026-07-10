@@ -5,33 +5,70 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding-top: 60px;
+    padding-top: 70px;
     /* Offset for navbar */
+    padding-bottom: 4rem;
+    /* Keep content clear of the status bar */
 }
 
-/* Background Gradients */
-.hero::before {
-    content: '';
+/* ---- Light mode: chalk pitch markings ---- */
+.pitchLines {
     position: absolute;
-    top: -20%;
-    left: -10%;
-    width: 50vw;
-    height: 50vw;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-    filter: blur(80px);
-    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
 }
 
-.hero::after {
-    content: '';
+.halfwayLine {
     position: absolute;
-    bottom: -20%;
-    right: -10%;
-    width: 50vw;
-    height: 50vw;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
-    filter: blur(80px);
-    z-index: -1;
+    top: 0;
+    bottom: 0;
+    right: 18%;
+    width: 1.5px;
+    background: var(--chalk);
+}
+
+.centerCircle {
+    position: absolute;
+    top: 50%;
+    right: 18%;
+    width: 280px;
+    height: 280px;
+    transform: translate(50%, -50%);
+    border: 1.5px solid var(--chalk);
+    border-radius: 50%;
+}
+
+.centerSpot {
+    position: absolute;
+    top: 50%;
+    right: 18%;
+    width: 8px;
+    height: 8px;
+    transform: translate(50%, -50%);
+    border-radius: 50%;
+    background: var(--chalk);
+}
+
+/* Corner-flag arc, bottom-left like a real pitch corner */
+.cornerArc {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 90px;
+    height: 90px;
+    border: 1.5px solid var(--chalk);
+    border-radius: 0 100% 0 0;
+    border-left: none;
+    border-bottom: none;
+}
+
+/* The flag planted at that corner — muted turf green, not loud */
+.cornerFlag {
+    position: absolute;
+    bottom: 16px;
+    left: 18px;
+    color: var(--accent-tertiary);
 }
 
 .content {
@@ -43,23 +80,59 @@
 .greeting {
     display: block;
     font-size: 1.1rem;
-    color: var(--accent-primary);
     margin-bottom: 1rem;
-    font-weight: 100;
-    letter-spacing: 0.05em;
+}
+
+.greetingDark {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--accent-primary);
+}
+
+.greetingLight {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
+    color: var(--accent-primary);
 }
 
 .headline {
-    font-size: 4rem;
+    /* Fluid from phones to desktop, no jumpy breakpoints */
+    font-size: clamp(2.3rem, 7.5vw, 4rem);
     font-weight: 100;
     line-height: 1.1;
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
+    text-wrap: balance;
+}
+
+/* Blinking terminal cursor after the headline (dark mode only) */
+.cursor {
+    display: inline-block;
+    width: 0.45em;
+    height: 0.85em;
+    margin-left: 0.08em;
+    vertical-align: baseline;
+    transform: translateY(0.12em);
+    background: var(--accent-primary);
+    animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cursor {
+        animation: none;
+    }
 }
 
 .subtitle {
-    font-size: 1.25rem;
+    font-size: clamp(1.05rem, 3vw, 1.25rem);
     color: var(--text-secondary);
     margin-bottom: 2.5rem;
     line-height: 1.6;
@@ -69,13 +142,14 @@
     display: flex;
     gap: 1rem;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .primaryBtn,
 .secondaryBtn {
     padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 100;
+    border-radius: 6px;
+    font-weight: 400;
     font-size: 1rem;
     transition: all 0.2s ease;
     display: flex;
@@ -84,28 +158,110 @@
 }
 
 .primaryBtn {
-    background: var(--text-primary);
+    background: var(--accent-primary);
     color: var(--bg-primary);
+}
+
+.btnDark {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
 }
 
 .primaryBtn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 14px var(--accent-soft);
+    filter: brightness(1.08);
 }
 
 .secondaryBtn {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--chip-bg);
     border: 1px solid var(--border-subtle);
     color: var(--text-primary);
 }
 
 .secondaryBtn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--text-secondary);
+    background: var(--accent-soft);
+    border-color: var(--border-strong);
+}
+
+/* Résumé: outlined in the accent so it reads as a distinct call-to-action */
+.resumeBtn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 400;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.resumeBtn:hover {
+    background: var(--accent-soft);
+    transform: translateY(-2px);
+}
+
+/* ---- Dark mode: editor status bar ---- */
+.statusBar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    padding: 0.45rem 1.5rem;
+    background: var(--bg-tertiary);
+    border-top: 1px solid var(--border-subtle);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+}
+
+.statusGit {
+    color: var(--accent-primary);
+}
+
+.statusRight {
+    margin-left: auto;
 }
 
 @media (max-width: 768px) {
-    .headline {
-        font-size: 2.5rem;
+
+    /* The center circle and halfway line would run through the text on
+       phones; the corner arc carries the pitch motif instead */
+    .halfwayLine,
+    .centerCircle,
+    .centerSpot {
+        display: none;
+    }
+
+    .statusBar {
+        gap: 1.25rem;
+        padding: 0.45rem 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .statusExtra {
+        display: none;
+    }
+
+    .actions {
+        gap: 0.6rem;
+    }
+
+    .primaryBtn,
+    .secondaryBtn,
+    .resumeBtn {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .btnDark {
+        font-size: 0.85rem;
     }
 }

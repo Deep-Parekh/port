@@ -36,16 +36,23 @@
     z-index: 2;
 }
 
+/* Light (soccer) mode: each timeline node becomes a soccer ball */
+:global([data-theme='light']) .item::before {
+    border: none;
+    border-radius: 0;
+    background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a7c59' stroke-width='1.8' stroke-linejoin='round'><circle cx='12' cy='12' r='9' fill='%23f5f7f3'/><path d='M12 8L15.8 10.76 14.35 15.24 9.65 15.24 8.2 10.76Z' fill='%234a7c59' fill-opacity='0.85' stroke='none'/><path d='M12 3.2V8M15.8 10.76l4.5-1.46M14.35 15.24l2.8 3.85M9.65 15.24l-2.8 3.85M8.2 10.76L3.7 9.3'/></svg>") center / contain no-repeat;
+}
+
 .card {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--card-bg);
     border: 1px solid var(--border-subtle);
     border-radius: 12px;
     padding: 2rem;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .card:hover {
-    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-strong);
 }
 
 .role {
@@ -69,7 +76,33 @@
     display: block;
 }
 
+/* Dark mode: dates read like commit timestamps */
+:global(html:not([data-theme='light'])) .period {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
 .description {
     color: var(--text-secondary);
     line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+    .timeline {
+        padding-left: 1.25rem;
+    }
+
+    .item {
+        padding-left: 1.25rem;
+        padding-bottom: 2rem;
+    }
+
+    .item::before {
+        left: -1.75rem;
+        /* Re-center the dot on the narrower rail */
+    }
+
+    .card {
+        padding: 1.25rem;
+    }
 }

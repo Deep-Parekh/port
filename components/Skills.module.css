@@ -12,8 +12,19 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* min(280px, 100%) keeps tracks from overflowing viewports under ~330px */
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        gap: 1.25rem;
+    }
+
+    .category {
+        padding: 1.25rem;
+    }
 }
 
 .category {
@@ -38,6 +49,11 @@
     gap: 0.5rem;
 }
 
+.categoryTitle svg {
+    color: var(--accent-primary);
+    flex-shrink: 0;
+}
+
 .skillList {
     display: flex;
     flex-wrap: wrap;
@@ -45,7 +61,7 @@
 }
 
 .skill {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--chip-bg);
     color: var(--text-secondary);
     padding: 0.4rem 1rem;
     border-radius: 20px;
@@ -54,8 +70,15 @@
     transition: all 0.2s ease;
 }
 
+/* Dark mode: chips read like tokens in a config file */
+:global(html:not([data-theme='light'])) .skill {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    border-radius: 4px;
+}
+
 .skill:hover {
-    background: rgba(59, 130, 246, 0.1);
-    border-color: rgba(59, 130, 246, 0.3);
+    background: var(--accent-soft);
+    border-color: var(--accent-primary);
     color: var(--text-primary);
 }

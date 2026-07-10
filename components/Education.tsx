@@ -1,20 +1,22 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import SectionEyebrow from '@/components/SectionEyebrow';
+import { ConeIcon } from '@/components/SoccerIcons';
 import styles from './Education.module.css';
 
 const education = [
     {
-        degree: 'Master of Science in Computer Science',
+        degree: 'Master of Science in Artificial Intelligence',
         university: 'San Jose State University',
         period: '2024 - 2026',
-        description: 'Specialization in Software Engineering. Relevant coursework: Cloud Computing, Distributed Systems, Machine Learning.'
+        description: 'Relevant coursework: Machine Learning, Deep Learning, NLP, Distributed Systems.'
     },
     {
         degree: 'Bachelor of Science in Computer Science',
         university: 'California State Polytechnic University, Pomona',
         period: '2017 - 2021',
-        description: 'Dean\'s List. Relevant coursework: Data Structures, Algorithms, Operating Systems, Database Systems, Web Development.'
+        description: 'Minor in Entrepreneurship. Dean\'s List. Relevant coursework: Data Structures, Algorithms, Operating Systems, Database Systems, Web Development.'
     }
 ];
 
@@ -28,6 +30,7 @@ export default function Education() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
+                    <SectionEyebrow dark="education.md" light="Training Ground" icon={<ConeIcon />} />
                     Academic <span className="gradient-text">Background</span>
                 </motion.h2>
 

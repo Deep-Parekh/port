@@ -27,7 +27,7 @@ export default function SchedulePage() {
 
             <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
                 <iframe
-                    src="https://cal.com/deep-parekh-lrs1mu/30min?theme=dark"
+                    src="https://cal.com/deep-parekh-lrs1mu/15min?theme=dark"
                     style={{ width: '100%', height: '700px', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}
                     title="Cal.com Schedule"
                 ></iframe>

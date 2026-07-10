@@ -12,6 +12,7 @@
 }
 
 .scrolled {
+    /* Solid, not glass — content must never bleed through the navbar */
     background: var(--bg-primary);
     border-bottom: 1px solid var(--border-subtle);
 }
@@ -21,35 +22,85 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    position: relative;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .logo {
-    font-weight: 100;
     font-size: 1.25rem;
-    letter-spacing: -0.5px;
     color: var(--text-primary);
+}
+
+.logoDark {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+}
+
+.logoPrompt {
+    color: var(--accent-primary);
+}
+
+.logoLight {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+.logoSpot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-primary);
 }
 
 .navLinks {
     display: flex;
     gap: 2rem;
+    /* Centered to the navbar regardless of the logo/actions widths */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .link {
     color: var(--text-secondary);
     font-size: 0.95rem;
-    font-weight: 100;
     transition: color 0.2s ease;
+    padding: 0.25rem 0;
 }
 
-.link:hover,
+.linkDark {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+.link:hover {
+    color: var(--text-primary);
+}
+
+/* Active link: lit editor tab in dark, chalk underline in light */
 .active {
     color: var(--text-primary);
+    box-shadow: inset 0 -2px 0 var(--accent-primary);
 }
 
 .mobileMenuBtn {
     display: none;
     color: var(--text-primary);
+    padding: 0.25rem;
+}
+
+/* Dropdown panel under the navbar, small screens only */
+.mobileMenu {
+    display: none;
 }
 
 @media (max-width: 768px) {
@@ -61,23 +112,136 @@
         display: block;
     }
 
-    /* Add mobile menu styles if needed later */
+    .mobileMenu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--bg-primary);
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 0.25rem 1.5rem 0.75rem;
+        animation: menuIn 0.18s ease;
+    }
+
+    .mobileLink {
+        padding: 0.9rem 0;
+        border-bottom: 1px solid var(--border-subtle);
+        color: var(--text-secondary);
+        font-size: 1rem;
+    }
+
+    .mobileLink:last-child {
+        border-bottom: none;
+    }
+
+    .mobileLink:hover,
+    .mobileActive {
+        color: var(--text-primary);
+    }
+
+    .mobileActive :global(.dark-only),
+    .mobileActive :global(.light-only) {
+        color: var(--accent-primary);
+    }
 }
 
-.themeBtn {
-    color: var(--text-secondary);
-    transition: color 0.2s ease, transform 0.2s ease;
-    padding: 0.5rem;
-    border-radius: 50%;
+@keyframes menuIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mobileMenu {
+        animation: none;
+    }
+}
+
+/* Sliding theme toggle (soccer ball / code) */
+.themeToggle {
+    display: inline-flex;
+    align-items: center;
     margin-right: 0.5rem;
+    padding: 0;
 }
 
-.themeBtn:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
-    transform: rotate(15deg);
+.track {
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 28px;
+    border-radius: 999px;
+    background: var(--chip-bg);
+    border: 1px solid var(--border-subtle);
+    transition: border-color 0.2s ease;
 }
 
-[data-theme='light'] .themeBtn:hover {
-    background: rgba(0, 0, 0, 0.05);
+.themeToggle:hover .track {
+    border-color: var(--accent-primary);
+}
+
+/* Icons and knob share the exact same two centers (x = 13 / 41, y = middle)
+   so the active icon sits dead-center inside the knob in each state. */
+.ballIcon,
+.codeIcon {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: var(--text-tertiary);
+    transition: color 0.25s ease;
+}
+
+.ballIcon {
+    left: 13px;
+}
+
+/* Default theme is dark → the code icon is the active side */
+.codeIcon {
+    left: 41px;
+    color: var(--accent-primary);
+}
+
+:global([data-theme='light']) .ballIcon {
+    color: var(--accent-primary);
+}
+
+:global([data-theme='light']) .codeIcon {
+    color: var(--text-tertiary);
+}
+
+/* The knob slides to sit centered on the active icon */
+.knob {
+    position: absolute;
+    top: 50%;
+    left: 13px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+    z-index: 1;
+    transform: translate(-50%, -50%) translateX(28px);
+    /* dark: centered on the code icon (right) */
+    transition: transform 0.25s ease;
+}
+
+:global([data-theme='light']) .knob {
+    transform: translate(-50%, -50%) translateX(0);
+    /* light: centered on the ball icon (left) */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .knob {
+        transition: none;
+    }
 }

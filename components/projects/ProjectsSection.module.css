@@ -23,6 +23,16 @@
     padding: 2.5rem;
 }
 
+@media (max-width: 600px) {
+    .projectContent {
+        padding: 1.5rem;
+    }
+
+    .links {
+        flex-wrap: wrap;
+    }
+}
+
 .projectTitle {
     font-size: 1.75rem;
     margin-bottom: 1rem;
@@ -37,12 +47,19 @@
 }
 
 .tag {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--chip-bg);
     padding: 0.2rem 0.8rem;
     border-radius: 20px;
     font-size: 0.85rem;
     color: var(--text-secondary);
     border: 1px solid var(--border-subtle);
+}
+
+/* Dark mode: tags read like tokens in a config file */
+:global(html:not([data-theme='light'])) .tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    border-radius: 4px;
 }
 
 .projectDesc {

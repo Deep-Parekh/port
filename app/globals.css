@@ -1,49 +1,77 @@
 :root {
-  /* Default to Dark Mode variables */
-  --bg-primary: #050505;
-  --bg-secondary: #0f0f0f;
-  --bg-tertiary: #1a1a1a;
+  /* Default: Dark Mode — "Quiet Terminal"
+     Charcoal editor chrome with desaturated syntax-highlight accents. */
+  --bg-primary: #0e1116;
+  --bg-secondary: #11151c;
+  --bg-tertiary: #151a21;
 
-  --text-primary: #f5f5f5;
-  --text-secondary: #a3a3a3;
-  --text-tertiary: #525252;
+  --text-primary: #d3dae3;
+  --text-secondary: #8b949e;
+  --text-tertiary: #57606c;
 
-  --accent-primary: #3b82f6;
-  /* Blue */
-  --accent-secondary: #8b5cf6;
-  /* Violet */
-  --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --accent-primary: #6a9b7e;
+  /* Sage green — cursor, links, success */
+  --accent-secondary: #82a7c9;
+  /* Dusty blue — keywords */
+  --accent-tertiary: #c8a97e;
+  /* Soft amber — strings, highlights */
+  --accent-gradient: linear-gradient(135deg, #7fb094, #82a7c9);
+  --accent-soft: rgba(106, 155, 126, 0.12);
 
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.15);
+  --border-subtle: #1d232c;
+  --border-strong: #2a3341;
 
-  --glass-bg: rgba(5, 5, 5, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --card-bg: #11151c;
+  --chip-bg: rgba(255, 255, 255, 0.04);
+
+  --glass-bg: rgba(14, 17, 22, 0.75);
+  --glass-border: #1d232c;
 
   --font-sans: var(--font-dmsans), system-ui, sans-serif;
-  --font-mono: monospace;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 [data-theme='light'] {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
+  /* Light Mode — "Sunday League"
+     An early-morning pitch: chalk lines and mossy greens, nothing neon. */
+  --bg-primary: #f5f7f3;
+  --bg-secondary: #eef1ea;
+  --bg-tertiary: #e6ebe1;
 
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-tertiary: #94a3b8;
+  --text-primary: #24332a;
+  --text-secondary: #5d6f63;
+  --text-tertiary: #8fa094;
 
-  --accent-primary: #2563eb;
-  /* Darker Blue for light mode */
-  --accent-secondary: #7c3aed;
-  /* Darker Violet */
-  --accent-gradient: linear-gradient(135deg, #2563eb, #7c3aed);
+  --accent-primary: #4a7c59;
+  /* Grass green */
+  --accent-secondary: #35573f;
+  /* Pine */
+  --accent-tertiary: #6e8a5e;
+  /* Faded turf */
+  --accent-gradient: linear-gradient(135deg, #4a7c59, #35573f);
+  --accent-soft: rgba(74, 124, 89, 0.1);
 
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-strong: rgba(0, 0, 0, 0.15);
+  --border-subtle: #dde4da;
+  --border-strong: #c6d2c2;
 
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(0, 0, 0, 0.08);
+  --card-bg: #fbfcfa;
+  --chip-bg: rgba(36, 51, 42, 0.05);
+
+  --glass-bg: rgba(245, 247, 243, 0.8);
+  --glass-border: #dde4da;
+
+  /* Chalk pitch markings */
+  --chalk: #dbe4d7;
+}
+
+/* Theme-scoped visibility: elements that only exist in one world.
+   Default (no attribute yet) is dark, so hide .light-only there too. */
+[data-theme='light'] .dark-only {
+  display: none !important;
+}
+
+html:not([data-theme='light']) .light-only {
+  display: none !important;
 }
 
 html {
@@ -67,6 +95,11 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text-primary);
 }
 
 a {
@@ -103,6 +136,50 @@ button {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
+}
+
+/* Section eyebrows: a code comment in dark mode, a kickoff label in light */
+.section-eyebrow {
+  display: block;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.section-eyebrow .dark-only {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-primary);
+}
+
+.section-eyebrow .light-only {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+}
+
+.section-eyebrow .light-only::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+}
+
+/* When a soccer icon is supplied, it stands in for the default dot */
+.section-eyebrow.with-icon .light-only::before {
+  display: none;
+}
+
+.section-eyebrow .light-only svg {
+  color: var(--accent-primary);
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
 }
 
 /* Scrollbar */
