@@ -28,7 +28,10 @@ export default function Footer() {
                 </p>
 
                 <p className={styles.blurb}>
-                    The fastest way to reach me is email 
+                    The fastest way to reach me is by email or&nbsp;
+                    <a href="/schedule" className={styles.scheduleLink}>
+                        set up a quick meeting with me
+                    </a>.
                 </p>
 
                 <div className={styles.links}>

@@ -10,13 +10,13 @@ const education = [
         degree: 'Master of Science in Artificial Intelligence',
         university: 'San Jose State University',
         period: '2024 - 2026',
-        description: 'Relevant coursework: Machine Learning, Deep Learning, NLP, Distributed Systems.'
+        description: 'Relevant coursework: Recommender Systems, Data Mining, Deep Learning, NLP, Reinforcement Learning, Artificial Intelligence and Data Engineering'
     },
     {
         degree: 'Bachelor of Science in Computer Science',
         university: 'California State Polytechnic University, Pomona',
         period: '2017 - 2021',
-        description: 'Minor in Entrepreneurship. Dean\'s List. Relevant coursework: Data Structures, Algorithms, Operating Systems, Database Systems, Web Development.'
+        description: 'Minor in Entrepreneurship. Dean\'s List. Relevant coursework: Data Structures and Algorithms, Operating Systems, Database Systems, Web Development and Software Engineering.'
     }
 ];
 

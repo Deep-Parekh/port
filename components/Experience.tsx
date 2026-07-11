@@ -10,7 +10,7 @@ const experiences = [
         role: 'Software Engineer',
         company: 'Sun Net Inc.',
         period: 'July 2021 - Present',
-        description: 'Architected a central entity linking system decoupled from 5 legacy modules, increasing platform modularity. Designed workflows saving customers 80%+ time. Led end-to-end development of REST APIs and React frontends. Mentored junior engineers.'
+        description: 'Architected a central entity linking system decoupled from 5 legacy modules, increasing platform modularity. Designed workflows saving customers 80%+ time. Led end-to-end development of REST APIs and javascript frontends. Mentored junior engineers. Building agentic applications in the utility space.'
     },
     {
         role: 'Application Developer Intern',
