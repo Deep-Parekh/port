@@ -46,7 +46,7 @@ export default function Footer() {
                     <a href="https://www.github.com/Deep-Parekh" target="_blank" rel="noopener noreferrer" className={styles.iconLink} aria-label="GitHub">
                         <Github size={18} />
                     </a>
-                    <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.iconLink} aria-label="Résumé">
+                    <a href="/deep_parekh_resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.iconLink} aria-label="Résumé">
                         <FileText size={18} />
                     </a>
                 </div>

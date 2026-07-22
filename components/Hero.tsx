@@ -48,7 +48,7 @@ export default function Hero() {
                 >
                     Development lead who owns delivery end-to-end — turning ambiguous,
                     customer-facing problems into shipped software, from discovery to production.
-                    <br />Now building LLM agents while finishing my M.S. in Artificial Intelligence at SJSU.
+                    <br />Now building LLM agents.
                 </motion.p>
 
                 <motion.div
@@ -68,7 +68,7 @@ export default function Hero() {
                     <a href="https://www.linkedin.com/in/deepparekh/" target="_blank" rel="noopener noreferrer" className={styles.secondaryBtn} aria-label="LinkedIn">
                         <Linkedin size={20} />
                     </a>
-                    <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.resumeBtn}>
+                    <a href="/deep_parekh_resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.resumeBtn}>
                         <Download size={18} />
                         <span className={`${styles.btnDark} dark-only`}>curl -L resume.pdf</span>
                         <span className="light-only">Resume</span>
