@@ -4,6 +4,10 @@ import { NextRequest, NextResponse } from 'next/server';
 // shared secret stay here (never shipped to the browser); the client only ever
 // calls same-origin /api/chat.
 export const runtime = 'nodejs';
+// A cold Modal container + a multi-tool agent turn can take tens of seconds;
+// Vercel Hobby defaults to 10s and would 504 (returning HTML, which the client
+// then can't parse — surfacing as a "network error"). 60s is the Hobby max.
+export const maxDuration = 60;
 
 export async function POST(req: NextRequest) {
   const base = process.env.AGENT_API_URL;
@@ -41,8 +45,9 @@ export async function POST(req: NextRequest) {
         message: body.message,
         history: body.history ?? [],
       }),
-      // Modal scales to zero; the first request after idle cold-starts (~seconds).
-      signal: AbortSignal.timeout(90_000),
+      // Stay under maxDuration so we return clean JSON before Vercel kills the
+      // function with an (unparseable) HTML 504.
+      signal: AbortSignal.timeout(55_000),
     });
 
     const data = await upstream.json().catch(() => ({ error: 'Bad response from agent' }));

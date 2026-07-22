@@ -52,10 +52,22 @@ export default function Console() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: username.trim(), message, history }),
       });
-      const data = (await res.json()) as ChatResponse & { error?: string };
+      // A gateway timeout / crash returns HTML, not JSON — parse defensively so
+      // the user sees a real reason instead of a generic failure.
+      let data: (ChatResponse & { error?: string });
+      try {
+        data = await res.json();
+      } catch {
+        data = {
+          reply: '', route: '', tool_trace: [], profile: {},
+          error:
+            res.status === 504 || res.status === 502
+              ? 'The agent took too long to respond (it may be waking up). Please try again.'
+              : `Unexpected response from the agent (HTTP ${res.status}).`,
+        };
+      }
       setMessages((prev) => {
         const next = [...prev];
-        const last = next[next.length - 1];
         if (res.ok && !data.error) {
           next[next.length - 1] = {
             role: 'assistant',
@@ -73,12 +85,13 @@ export default function Console() {
         }
         return next;
       });
-    } catch {
+    } catch (err) {
+      const detail = err instanceof Error ? err.message : String(err);
       setMessages((prev) => {
         const next = [...prev];
         next[next.length - 1] = {
           role: 'assistant',
-          content: 'Network error — please try again.',
+          content: `Couldn't reach the agent (${detail}). It may be waking up — please try again.`,
           error: true,
         };
         return next;
