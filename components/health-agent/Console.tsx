@@ -85,12 +85,13 @@ export default function Console() {
         }
         return next;
       });
-    } catch {
+    } catch (err) {
+      const detail = err instanceof Error ? err.message : String(err);
       setMessages((prev) => {
         const next = [...prev];
         next[next.length - 1] = {
           role: 'assistant',
-          content: 'Network error — please try again.',
+          content: `Couldn't reach the agent (${detail}). It may be waking up — please try again.`,
           error: true,
         };
         return next;
