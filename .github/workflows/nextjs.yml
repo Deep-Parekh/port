@@ -5,11 +5,11 @@
 name: Deploy Next.js site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main", "master"]
-
-  # Allows you to run this workflow manually from the Actions tab
+  # GitHub Pages deploy is DISABLED — the site is served by Vercel, which runs
+  # the /api/chat route that a static Pages export cannot. Auto-run on push is
+  # removed so this no longer fails every deploy (a static export can't produce
+  # ./out without output:'export', which we removed from next.config.ts).
+  # Left as manual-only for history; delete this file if Pages is gone for good.
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
