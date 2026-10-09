@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, Github, Linkedin, FileText } from 'lucide-react';
+import { Mail, Github, Linkedin } from 'lucide-react';
 import SectionEyebrow from '@/components/SectionEyebrow';
 import { WhistleIcon } from '@/components/SoccerIcons';
 import styles from './Footer.module.css';
@@ -45,9 +45,6 @@ export default function Footer() {
                     </a>
                     <a href="https://www.github.com/Deep-Parekh" target="_blank" rel="noopener noreferrer" className={styles.iconLink} aria-label="GitHub">
                         <Github size={18} />
-                    </a>
-                    <a href="/deep_parekh_resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.iconLink} aria-label="Résumé">
-                        <FileText size={18} />
                     </a>
                 </div>
 

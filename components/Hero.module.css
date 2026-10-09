@@ -184,26 +184,6 @@
     border-color: var(--border-strong);
 }
 
-/* Résumé: outlined in the accent so it reads as a distinct call-to-action */
-.resumeBtn {
-    padding: 0.8rem 1.5rem;
-    border-radius: 6px;
-    font-weight: 400;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: transparent;
-    border: 1px solid var(--accent-primary);
-    color: var(--accent-primary);
-}
-
-.resumeBtn:hover {
-    background: var(--accent-soft);
-    transform: translateY(-2px);
-}
-
 /* ---- Dark mode: editor status bar ---- */
 .statusBar {
     position: absolute;
@@ -255,8 +235,7 @@
     }
 
     .primaryBtn,
-    .secondaryBtn,
-    .resumeBtn {
+    .secondaryBtn {
         padding: 0.75rem 1rem;
         font-size: 0.95rem;
     }

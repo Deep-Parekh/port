@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Download } from 'lucide-react';
+import { ArrowRight, Github, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import styles from './Hero.module.css';
 import { CornerFlagIcon } from '@/components/SoccerIcons';
@@ -67,11 +67,6 @@ export default function Hero() {
                     </a>
                     <a href="https://www.linkedin.com/in/deepparekh/" target="_blank" rel="noopener noreferrer" className={styles.secondaryBtn} aria-label="LinkedIn">
                         <Linkedin size={20} />
-                    </a>
-                    <a href="/deep_parekh_resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.resumeBtn}>
-                        <Download size={18} />
-                        <span className={`${styles.btnDark} dark-only`}>curl -L resume.pdf</span>
-                        <span className="light-only">Resume</span>
                     </a>
                 </motion.div>
             </div>
