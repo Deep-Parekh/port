@@ -11,7 +11,8 @@ import { useTheme } from '@/context/ThemeContext';
 const navItems = [
     { name: 'Home', file: 'home.tsx', path: '/' },
     { name: 'Projects', file: 'projects.tsx', path: '/#projects' },
-    { name: 'HealthVA', file: 'health-agent.tsx', path: '/health-agent' },
+    // HealthVA is temporarily down
+    // { name: 'HealthVA', file: 'health-agent.tsx', path: '/health-agent' },
     { name: 'Schedule', file: 'schedule.md', path: '/schedule' },
 ];
 
